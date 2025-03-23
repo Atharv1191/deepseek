@@ -22,5 +22,7 @@ const UserSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const User = mongoose.models.User|| mongoose.models("User", UserSchema);
+// ✅ Prevent model re-declaration in serverless environments
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+
 export default User;
